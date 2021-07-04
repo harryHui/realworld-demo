@@ -68,7 +68,7 @@ export default {
     async onSubmit() {
       try {
         const {email, password} = this.user
-        const {data} = !this.login
+        const {data} = this.isLogin
                         ? await login({
                             user: {email, password}
                           })
