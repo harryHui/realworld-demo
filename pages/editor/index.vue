@@ -4,19 +4,19 @@
     <div class="row">
 
       <div class="col-md-10 offset-md-1 col-xs-12">
-        <form>
+        <form @submit.prevent="publishFn">
           <fieldset>
             <fieldset class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Article Title">
+                <input v-model="article.title" type="text" class="form-control form-control-lg" placeholder="Article Title" required>
             </fieldset>
             <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="What's this article about?">
+                <input v-model="article.description" type="text" class="form-control" placeholder="What's this article about?" required>
             </fieldset>
             <fieldset class="form-group">
-                <textarea class="form-control" rows="8" placeholder="Write your article (in markdown)"></textarea>
+                <textarea v-model="article.body" class="form-control" rows="8" placeholder="Write your article (in markdown)" required></textarea>
             </fieldset>
             <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="Enter tags"><div class="tag-list"></div>
+                <input v-model="article.tagList" type="text" class="form-control" placeholder="Enter tags"><div class="tag-list"></div>
             </fieldset>
             <button class="btn btn-lg pull-xs-right btn-primary" type="button">
                 Publish Article
@@ -31,9 +31,25 @@
 </template>
 
 <script>
+import { publishArticle } from '@/api/articles'
 export default {
   name: 'editor',
-  middleware: 'authenticated'
+  middleware: 'authenticated',
+  data() {
+    return {
+      article: {
+        title: '',
+        description: '',
+        body: '',
+        tagList: ''
+      }
+    }
+  },
+  methods: {
+    publishFn() {
+      publishArticle({article: this.article})
+    }
+  }
 }
 </script>
 

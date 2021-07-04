@@ -53,3 +53,12 @@ export const getComments = slug => {
     url: `/api/articles/${slug}/comments`
   })
 }
+
+// 新增文章
+export const publishArticle = params => {
+  return request({
+    method: 'POST',
+    url: `/api/articles`,
+    params
+  })
+}
