@@ -24,7 +24,7 @@
               <nuxt-link class="nav-link" :to="`/profile/${user.username}`">
                 <img
                   class="user-pic"
-                  src="https://portrait.gitee.com/uploads/avatars/user/571/1714520_xudh_1618916790.png!avatar30"
+                  :src="user.image"
                 >
                 {{ user.username }}
               </nuxt-link>
