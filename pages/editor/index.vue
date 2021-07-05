@@ -18,7 +18,7 @@
             <fieldset class="form-group">
                 <input v-model="article.tagList" type="text" class="form-control" placeholder="Enter tags"><div class="tag-list"></div>
             </fieldset>
-            <button class="btn btn-lg pull-xs-right btn-primary" type="button">
+            <button class="btn btn-lg pull-xs-right btn-primary">
                 Publish Article
             </button>
           </fieldset>
@@ -46,8 +46,11 @@ export default {
     }
   },
   methods: {
-    publishFn() {
-      publishArticle({article: this.article})
+    async publishFn() {
+      const { data } = await publishArticle({article: this.article})
+      // 添加成功，跳转文章详情页
+      console.log(data)
+      this.$router.push({name: 'article', params: {slug: data?.article?.slug}})
     }
   }
 }

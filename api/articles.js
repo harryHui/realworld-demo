@@ -55,10 +55,10 @@ export const getComments = slug => {
 }
 
 // 新增文章
-export const publishArticle = params => {
+export const publishArticle = data => {
   return request({
     method: 'POST',
     url: `/api/articles`,
-    params
+    data
   })
 }
