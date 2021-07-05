@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { publishArticle } from '@/api/articles'
+import { getArticle, publishArticle, updateArticle } from '@/api/articles'
 export default {
   name: 'editor',
   middleware: 'authenticated',
@@ -45,9 +45,26 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getArticle();
+  },
+  computed:{
+    slug(){
+      return  this.$route.params.slug
+    }
+  },
   methods: {
+    async getArticle() {
+      try {
+        if (!this.slug) return
+        const { data } = await getArticle(this.slug)
+        this.article = data.article
+      } catch (err) {
+        console.log(err)
+      }
+    },
     async publishFn() {
-      const { data } = await publishArticle({article: this.article})
+      const { data } = this.slug? await updateArticle(this.slug, this.article) : await publishArticle({article: this.article})
       // 添加成功，跳转文章详情页
       console.log(data)
       this.$router.push({name: 'article', params: {slug: data?.article?.slug}})

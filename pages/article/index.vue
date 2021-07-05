@@ -6,7 +6,7 @@
 
       <h1>{{article.title}}</h1>
 
-      <article-meta :article="article"/>
+      <article-meta :article="article" :username="user.username"/>
 
     </div>
   </div>
@@ -20,13 +20,13 @@
     <hr />
 
     <div class="article-actions">
-      <article-meta :article="article"/>
+      <article-meta :article="article" :username="user.username"/>
     </div>
 
     <div class="row">
 
       <div class="col-xs-12 col-md-8 offset-md-2">
-        <article-components :article="article"/>
+        <article-components :article="article" :user="user" v-if="user"/>
       </div>
 
     </div>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 import { getArticle } from '@/api/articles.js'
 import ArticleMeta from './components/article-meta.vue'
 import ArticleComponents from './components/article-components.vue'
@@ -61,6 +62,9 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState(["user"]),
   }
 }
 </script>

@@ -62,3 +62,36 @@ export const publishArticle = data => {
     data
   })
 }
+
+// 更新文章详情
+export const updateArticle = (slug, data) => {
+  return request({
+    method: 'PUT',
+    url: `/api/articles/${slug}`,
+    data
+})
+}
+
+// 添加关注
+export const addFollow = username => {
+  return request({
+    method: 'POST',
+    url: `/api/profiles/${username}/follow`,
+  })
+}
+
+// 取消关注
+export const deleteFollow = username => {
+  return request({
+    method: 'DELETE',
+    url: `/api/profiles/${username}/follow`,
+  })
+}
+
+// 删除文章
+export const deleteArticle = slug => {
+  return request({
+    method: 'DELETE',
+    url: `/api/articles/${slug}`,
+  })
+}
