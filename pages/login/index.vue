@@ -41,7 +41,7 @@
 <script>
 import { login, register } from '@/api/user.js'
 
-// 仅在客户端加载该包
+//  仅在客户端加载该包
 const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   name: 'login',
