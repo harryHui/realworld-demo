@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     ...mapMutations(['setUser']),
-    // 退出登录
+    //  退出登录
     logout() {
       this.setUser(null)
       Cookie.set('user', null)
