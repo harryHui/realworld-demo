@@ -125,7 +125,7 @@ import {
 import { getProfiles } from "@/api/profile"
 export default {
   name: 'UserProfile',
-  middleware: 'authenticated', // 当前页面是否路由鉴权
+  middleware: 'authenticated', //  当前页面是否路由鉴权
   watchQuery: ["tab", "page"],
   computed: {
     ...mapState(['user']),
