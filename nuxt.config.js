@@ -63,6 +63,8 @@ module.exports = {
   ],
   server: { // 自动打开浏览器
     open: true,
-    autoOpenBrowser: true
+    autoOpenBrowser: true,
+    host: '0.0.0.0',
+    port: 3000
   }
 }
